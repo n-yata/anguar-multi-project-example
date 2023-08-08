@@ -1,2 +1,6 @@
-<p>{{title}} works!</p>
-<p>{{message}}</p>
+<p>{{ title }} works!</p>
+<p>{{ message }}</p>
+<button type="button" (click)="getText()">getText</button>
+<div *ngIf="text">
+  <p>{{ text }}</p>
+</div>

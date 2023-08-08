@@ -11,7 +11,4 @@ import { Component } from '@angular/core';
   ]
 })
 export class CommonComponent {
-  getMessage(text: string) {
-    return text + ' world';
-  }
 }

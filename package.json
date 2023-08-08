@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start_app1": "ng serve --project app1 --port 4201 --open",
-    "start_app2": "ng serve --project app2 --port 4202 --open"
+    "start:app1": "ng serve --project app1 --host 127.0.0.1 --port 4200",
+    "start:app2": "ng serve --project app2 --host 127.0.0.1 --port 4200"
   },
   "private": true,
   "dependencies": {
