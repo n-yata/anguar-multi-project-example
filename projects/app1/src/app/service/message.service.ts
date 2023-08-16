@@ -14,31 +14,51 @@ export class MessagesService {
    * 共通メッセージマップにアプリごとのメッセージマップをマージする
    * @param messages
    */
-  mergeMessages(messages: Map<string, MessageType>) {
+  mergeMessages(messages: Map<string, MessageType>): void {
     this.messages = new Map([
       ...Array.from(this.messages.entries()),
       ...Array.from(messages.entries()),
     ]);
   }
 
-  getMessage(code: string, ...args: any[]): string {
+  /**
+   * メッセージコードを基にメッセージを返却する
+   * メッセージが取得できない場合、undefinedを返却する
+   * @param code
+   * @param args
+   * @returns
+   */
+  getMessage(code: string, ...args: any[]): string | undefined {
     let message = this.messages.get(code);
 
     if (message === undefined) {
-      return '';
+      return undefined;
     }
 
     return this.format(message.value, ...args);
   }
 
-  getMessageTuple(code: string, ...args: any[]): [string, string] {
+  /**
+   * メッセージコードを基にコード、メッセージを返却する
+   * 該当メッセージが存在しない場合、undefinedを返却する
+   * @param code
+   * @param args
+   * @returns
+   */
+  getMessageTuple(
+    code: string,
+    ...args: any[]
+  ): { code: string; value: string } | undefined {
     let message = this.messages.get(code);
 
     if (message === undefined) {
-      return ['', ''];
+      return undefined;
     }
 
-    return [message.code, this.format(message.value, ...args)];
+    return {
+      code: message.code,
+      value: this.format(message.value, ...args),
+    };
   }
 
   /**
